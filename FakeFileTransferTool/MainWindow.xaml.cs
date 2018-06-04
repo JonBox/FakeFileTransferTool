@@ -27,6 +27,7 @@ namespace FakeFileTransferTool
     public partial class MainWindow : Window
     {
         private List<string> filenames = new List<string> { };
+        private bool stop = false;
 
         ObservableCollection<string> consoleOutput = new ObservableCollection<string>() { "Console Emulation Sample..." };
         public MainWindow()
@@ -36,11 +37,16 @@ namespace FakeFileTransferTool
 
         private async void Start_Click(object sender, RoutedEventArgs e)
         {
+            stop = false;
             foreach (var filename in filenames)
             {
                 FileName.Content = filename;
                 await MoveProgress();
                 FakeConsole.WriteOutput(filename + Environment.NewLine, Color.FromRgb(0,255,0));
+                if (stop)
+                {
+                    return;
+                }
             }
 
 
@@ -53,8 +59,16 @@ namespace FakeFileTransferTool
                 ProgressBar.Value = i;
                 await Task.Run(() =>
                 {
-                    Thread.Sleep(20);
+                    Thread.Sleep(200);
+                    if (stop)
+                    {
+                        return;
+                    }
                 });
+                if (stop)
+                {
+                    return;
+                }
             }
         }
 
@@ -88,6 +102,11 @@ namespace FakeFileTransferTool
                 filenames = File.ReadAllLines(openFileDialog.FileName).ToList();
                 btnTransfer.IsEnabled = true;
             }
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            stop = true;
         }
     }
 }

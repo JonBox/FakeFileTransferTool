@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Music Uploader" Height="350" Width="525">
     <Grid>
-        <ProgressBar Name="ProgressBar" HorizontalAlignment="Left" Height="17" Margin="10,51,0,0" VerticalAlignment="Top" Width="497"/>
+        <ProgressBar Name="ProgressBar" Height="17" Margin="10,51,10,0" VerticalAlignment="Top"/>
         <!--<ScrollViewer Name="Scroller" Margin="10,73,10,10" Background="Black">
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}">
@@ -29,7 +29,8 @@
             </wpf:ConsoleControl.Background>
         </wpf:ConsoleControl>
         <Label Name="FileName" Content="" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
-        <Button Name="btnTransfer" IsEnabled="False" Content="Start Transfer" HorizontalAlignment="Left" Margin="432,22,0,0" VerticalAlignment="Top" Width="75" Click="Start_Click"/>
-        <Button Content="Choose Files" Click="LoadFiles_Click" HorizontalAlignment="Left" Margin="352,22,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="btnTransfer" IsEnabled="False" Content="Start Transfer" Margin="0,22,90,0" Click="Start_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button Content="Choose Files" Click="LoadFiles_Click" Margin="0,22,170,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button Content="Stop Transfer" Click="Stop_Click" Margin="0,22,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
     </Grid>
 </Window>
